@@ -1,45 +1,35 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 483ea8c0e668bdc282e9f0a86122baaaf3f747df0f802a0fa66b7cfef6a7e2b3
+
 name:           ghc-gc-tune
-version:        0.3.1
+version:        0.3.2
+synopsis:       Graph performance of Haskell programs with different GC flags
+description:    ghc-gc-tune runs your compiled Haskell program with different GC flags, and generates a graph of time as those GC settings vary. ghc-gc-tune lets your automate the task of finding good GC flags for your program, in order to get the best performance from it. . Graphs are rendered with gnuplot, so make sure that is installed. . Example use: .  > ghc -O2 --make binarytrees.hs > ghc-gc-tune -t svg binarytrees 12 . Example output: . <http://haskell.org/haskellwiki/Ghc-gc-tune> . For more information on GHC garbage collector settings, see <http://www.haskell.org/ghc/docs/latest/html/users_guide/runtime-control.html#rts-options-gc> .
+category:       Development
+homepage:       https://github.com/bitemyapp/ghc-gc-tune#readme
+author:         Don Stewart
+maintainer:     community
+copyright:      https://github.com/bitemyapp/ghc-gc-tune
 license:        BSD3
 license-file:   LICENSE
-author:         Don Stewart
-maintainer:     Don Stewart
-homepage:       http://code.haskell.org/~dons/code/ghc-gc-tune
-category:       Development
-synopsis:       Graph performance of Haskell programs with different GC flags
-description:    ghc-gc-tune runs your compiled Haskell program with
-                different GC flags, and generates a graph of time as
-                those GC settings vary. ghc-gc-tune lets your automate
-                the task of finding good GC flags for your program, in
-                order to get the best performance from it.
-                .
-                Graphs are rendered with gnuplot, so make sure that is
-                installed.
-                .
-                Example use:
-                . 
-                > ghc -O2 --make binarytrees.hs
-                > ghc-gc-tune -t svg binarytrees 12
-                .
-                Example output:
-                .
-                <http://haskell.org/haskellwiki/Ghc-gc-tune>
-                .
-                For more information on GHC garbage collector settings,
-                see <http://www.haskell.org/ghc/docs/latest/html/users_guide/runtime-control.html#rts-options-gc>
-                .
 build-type:     Simple
-cabal-version:  >= 1.6
+cabal-version:  >= 1.10
+extra-source-files:
+    README.md
 
 executable ghc-gc-tune
-    build-depends:  base    >= 4 && <= 5,
-                    process >= 1.0.1,
-                    directory,
-                    filepath
-
-    main-is:        ghc-gc-tune.hs
-    ghc-options:    -Wall
-
-source-repository head
-  type:     darcs
-  location: http://code.haskell.org/~dons/code/ghc-gc-tune/
+  main-is: Main.hs
+  other-modules:
+      Paths_ghc_gc_tune
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -O2 -funbox-strict-fields
+  build-depends:
+      base >=4.7 && <5
+    , directory
+    , filepath
+    , process
+  default-language: Haskell2010

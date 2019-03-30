@@ -22,6 +22,9 @@
 
 ------------------------------------------------------------------------
 
+
+module Main where
+
 import System.IO
 import System.Exit
 import System.Environment
@@ -218,7 +221,7 @@ parse s = case maybeRead s of
                 numberOfGCs <- fmap read $ lookup "num_GCs" assocs
                 peakMemory  <- fmap read $ lookup "peak_megabytes_allocated" assocs
                 maxResident <- fmap read $ lookup "max_bytes_used" assocs
-                mutatorTime <- fmap read $ lookup "mutator_wall_seconds" assocs
+                mutatorTime <- fmap read $ lookup "mut_wall_seconds" assocs
                 gcTime      <- fmap read $ lookup "GC_wall_seconds" assocs
                 return GCStats { totalTime   = mutatorTime + gcTime , .. }
                                            -- ^ record pun.
