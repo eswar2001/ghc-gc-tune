@@ -34,7 +34,7 @@
           settings = {
           };
         };
-        packages.default = self.ghc-gc-tune;
+        packages.default = self'.packages.ghc-gc-tune;
       };
     };
 }
